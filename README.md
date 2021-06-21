@@ -14,9 +14,10 @@ PostgresSQL
 
 Swagger доступен по ссылке: http://localhost:8189/swagger-ui/#/
 
-В application.properties задать свои параметры подключения к базе данных:
+В hibernate.cfg задать свои параметры подключения к базе данных:
 
-`spring.datasource.url`
-`spring.datasource.username`
-`spring.datasource.password`
+`connection.url`
+`connection.username`
+`connection.password`
+
 
