@@ -65,13 +65,13 @@ public class NoteRepository {
     }
     /**
      * Метод поиска заметок по подстроке по принципу "содержит"
-     * @param text Искомая подстрока
+     * @param note Искомая подстрока
      * @return заметки с данной подстрокой
      */
-    public List<Note> getNotesLike(Note text) {
+    public List<Note> getNotesLike(Note note) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Note> allNotes = session.createQuery("select n.name, n.date, n.text from Note n where n.name like '%" + text + "%' or n.text like '%" + text + "%'").getResultList();
+        List<Note> allNotes = session.createQuery("select n.name, n.date, n.text from Note n where n.name like '%" + note.getText() + "%' or n.text like '%" + note.getText() + "%'").getResultList();
         session.getTransaction().commit();
         return allNotes;
     }
