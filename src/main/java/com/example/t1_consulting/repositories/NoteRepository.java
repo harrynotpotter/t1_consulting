@@ -19,8 +19,15 @@ public class NoteRepository {
      * @return Результат обновления сохранённый в базе
      */
     public Note update(Note note) {
-        Note note1 = new Note(note.getId(), note.getName(), note.getText(), note.getDate());
-        return save(note1);
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        Note note1 = (Note)session.createQuery("from Note where id = '" + note.getId() + "'").getSingleResult();
+        note1.setName(note.getName());
+        note1.setDate(note.getDate());
+        note1.setText(note.getText());
+        session.save(note1);
+        session.getTransaction().commit();
+        return note1;
     }
 
     /**
